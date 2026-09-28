@@ -1,8 +1,9 @@
 {
     "name": "MoneySave - Money Saving App",
     "short_name": "MoneySave",
-    "description": "A simple and beautiful money saving app.",
+    "description": "A simple and beautiful app to track income, expenses, and savings goals.",
     "start_url": "./index.html",
+    "scope": "./",
     "display": "standalone",
     "background_color": "#f5f7fb",
     "theme_color": "#4f46e5",
@@ -11,5 +12,19 @@
     "categories": [
         "finance",
         "productivity"
+    ],
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
     ]
 }
