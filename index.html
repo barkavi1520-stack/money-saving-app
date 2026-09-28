@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Mobile responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="description" content="A simple mobile-friendly money saving app">
+
+    <title>MoneySave</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- App Container -->
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <p class="small-text">Welcome back 👋</p>
+                <h1>MoneySave</h1>
+            </div>
+
+            <button class="theme-btn" id="themeBtn">🌙</button>
+        </header>
+
+
+        <!-- Balance Card -->
+        <section class="balance-card">
+
+            <p>Total Balance</p>
+
+            <h2 id="balance">Rs. 0.00</h2>
+
+            <div class="balance-details">
+
+                <div>
+                    <span>Income</span>
+                    <strong id="income">Rs. 0.00</strong>
+                </div>
+
+                <div>
+                    <span>Expenses</span>
+                    <strong id="expense">Rs. 0.00</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+
+            <button class="action-card income-action" onclick="openModal('income')">
+                <span>💰</span>
+                <p>Add Income</p>
+            </button>
+
+            <button class="action-card expense-action" onclick="openModal('expense')">
+                <span>💸</span>
+                <p>Add Expense</p>
+            </button>
+
+        </section>
+
+
+        <!-- Savings Goal -->
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Savings Goal</h2>
+                <button onclick="openGoalModal()">＋</button>
+            </div>
+
+            <div class="goal-card">
+
+                <div class="goal-top">
+                    <div>
+                        <p id="goalName">My Savings</p>
+                        <h3 id="goalAmount">Rs. 0 / Rs. 0</h3>
+                    </div>
+
+                    <span id="goalPercent">0%</span>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Transactions -->
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Recent Transactions</h2>
+                <button onclick="showAllTransactions()">See All</button>
+            </div>
+
+            <div id="transactions" class="transactions">
+
+                <div class="empty-state">
+                    <span>💰</span>
+                    <p>No transactions yet</p>
+                    <small>Add your first income or expense.</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+
+            <button class="nav-item active">
+                <span>🏠</span>
+                <small>Home</small>
+            </button>
+
+            <button class="nav-item" onclick="openModal('expense')">
+                <span>➕</span>
+                <small>Add</small>
+            </button>
+
+            <button class="nav-item" onclick="showAllTransactions()">
+                <span>📊</span>
+                <small>History</small>
+            </button>
+
+            <button class="nav-item" onclick="openGoalModal()">
+                <span>🎯</span>
+                <small>Goal</small>
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- Transaction Modal -->
+    <div class="modal" id="transactionModal">
+
+        <div class="modal-content">
+
+            <button class="close-btn" onclick="closeModal()">×</button>
+
+            <h2 id="modalTitle">Add Transaction</h2>
+
+            <form id="transactionForm">
+
+                <label>Type</label>
+
+                <select id="transactionType">
+
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+
+                </select>
+
+
+                <label>Description</label>
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Example: Food"
+                    required
+                >
+
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+
+                <label>Category</label>
+
+                <select id="category">
+
+                    <option value="Food">🍔 Food</option>
+                    <option value="Transport">🚌 Transport</option>
+                    <option value="Shopping">🛍️ Shopping</option>
+                    <option value="Education">📚 Education</option>
+                    <option value="Bills">💡 Bills</option>
+                    <option value="Salary">💼 Salary</option>
+                    <option value="Other">📌 Other</option>
+
+                </select>
+
+
+                <button class="submit-btn" type="submit">
+                    Save Transaction
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Goal Modal -->
+    <div class="modal" id="goalModal">
+
+        <div class="modal-content">
+
+            <button class="close-btn" onclick="closeGoalModal()">×</button>
+
+            <h2>Set Savings Goal 🎯</h2>
+
+            <form id="goalForm">
+
+                <label>Goal Name</label>
+
+                <input
+                    type="text"
+                    id="goalInputName"
+                    placeholder="Example: New Laptop"
+                    required
+                >
+
+
+                <label>Target Amount</label>
+
+                <input
+                    type="number"
+                    id="goalInputAmount"
+                    placeholder="Example: 100000"
+                    min="1"
+                    required
+                >
+
+
+                <button class="submit-btn" type="submit">
+                    Save Goal
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
